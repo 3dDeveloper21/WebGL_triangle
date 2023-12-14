@@ -61,6 +61,34 @@ function drawTriangle()
 
 
     // Fragment Shader
+    let fragmentShaderSourceCode = `#version 300 es
+    precision mediump float;
+
+    out vec4 outputColor;
+
+    void main(){
+        outputColor = vec4(0.4, 0.6, 0.22, 1.0);
+    };`
+
+    // Create shader object
+    let fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
+
+    // Put source code into the gl shader object
+    gl.shaderSource(fragmentShader, fragmentShaderSourceCode);
+
+    // Compile shader
+    gl.compileShader(fragmentShader);
+
+
+    /* Create Program */
+    // Create a GLSL program 
+    let program = gl.createProgram();
+    
+    // attach both shaders
+    gl.attachShader(program, vertextShader);
+    gl.attachShader(program, fragmentShader);
+
+    // Link Program
 }
 
 // try and catch for errors

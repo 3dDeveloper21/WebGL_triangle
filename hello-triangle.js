@@ -107,7 +107,7 @@ function helloTriangle()
     gl.enableVertexAttribArray(vertexPositionAttributeLocation);
 
     // Input assembler - how to read vertices from our GPU triangle buffer
-    gl.bindBuffer(gl.ARRAY_BUFFER, triangleGeoBuffer);
+    // gl.bindBuffer(gl.ARRAY_BUFFER, triangleGeoBuffer);
     gl.vertexAttribPointer(
         /* index = which attribute to use */
         vertexPositionAttributeLocation,
