@@ -21,8 +21,46 @@ function drawTriangle()
     [
         // Top middle
         0.0, 0.5,
-        
-    ]
+        // Bottom left
+        -0.5, -0.5,
+        // Bottom right
+        0.5, -0.5
+    ];
+
+    // Float32Array for GPU desired format
+    const verticesGPU = new Float32Array(vertices);
+
+    // Create buffer - reserve a new id for new buffer
+    // make it the active buffer - bind
+    // upload data for this buffer object to the GPU - JS data into GPU buffer object
+    const dataBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARAAY_BUFFER, dataBuffer);
+    gl.bufferData(gl.ARAAY_BUFFER, verticesGPU, gl.STATIC_DRAW);
+
+    /* Create Shaders*/
+    // Vertex Shader
+    const vertexShaderSourceCode = `#version 300 es
+    prescision mediump float;
+
+    void main(){
+        in vec2 vertexPosition;
+
+        void main(){
+            gl_Position = vec4(vertexPosition, 0.0, 1.0);
+        }
+    }`;
+
+    // create shader object
+    let vertextShader = gl.createShader(gl.VERTEX_SHADER);
+
+    // Put source code into the gl shader object
+    gl.shaderSource(vertextShader, vertexShaderSourceCode);
+
+    // Compile the shader code
+    gl.compileShader(vertextShader);
+
+
+    // Fragment Shader
 }
 
 // try and catch for errors
